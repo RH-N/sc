@@ -3,6 +3,7 @@ package sc;
 import sc.content.SCUnits;
 import sc.content.Test;
 import mindustry.mod.Mod;
+import mindustry.ui.Styles;
 import mindustry.ui.dialogs.BaseDialog;
 import sc.content.SCItems;
 import sc.content.SCLiquids;
@@ -11,10 +12,15 @@ import sc.content.SCOre;
 import sc.content.SCPlanets;
 import sc.content.SCStatusEffects;
 
+import java.util.Objects;
+
 import javax.swing.event.HyperlinkEvent.EventType;
 
 import arc.Core;
 import arc.Events;
+import arc.graphics.g2d.TextureRegion;
+import arc.scene.style.Style;
+import arc.scene.ui.ImageButton;
 import arc.util.Log;
 import arc.util.Time;
 import sc.content.SCBlocks;
@@ -30,11 +36,14 @@ public class SCMain extends Mod {
     Log.info("Loaded Synthetic Crystal Mod Constructor.");
     Vars.renderer.minZoom = 0.1f;
     Vars.renderer.maxZoom = 30.0f;
+    Log.info("缩放");
     Events.on(mindustry.game.EventType.ClientLoadEvent.class, (e) -> {
       welcomeDialog = new BaseDialog(Core.bundle.get("sc.welcome"));
       welcomeDialog.cont.image(Core.atlas.find("sc-crystal-core")).pad(3.0f).row();
       welcomeDialog.cont.button("退出", welcomeDialog::hide).size(100.0f, 50.0f);
       welcomeDialog.show();
+      Log.info("loaded 显示");
+      Log.info("dialog is null: " + (welcomeDialog == null));
       Log.info("loaded menu");
       welcomeDialog.cont.pane((c) -> {
         c.button(Core.bundle.get("sc.qq"), () -> {
@@ -44,9 +53,30 @@ public class SCMain extends Mod {
           }
         }).grow().left().size(120.0f, 50.0f);
       });
-
     });
+  }
 
+  public static ImageButton addIcon(String IconName, ImageButton.ImageButtonStyle imageButtonStyle, BaseDialog dialog) {
+    TextureRegion A = Core.atlas.find(SCVars.modName + IconName);
+    ImageButton buttonA = new ImageButton(A, imageButtonStyle);
+    Objects.requireNonNull(dialog);
+    buttonA.clicked(dialog::show);
+    return buttonA;
+  }
+
+  @Override
+  public void init() {
+    Log.info("loaded init");
+    /**
+     * ImageButton imagebutton = addIcon("crystal-core", Styles.defaulti,
+     * welcomeDialog);
+     * Vars.ui.menuGroup.fill((t) -> {
+     * t.add(imagebutton).update((b) -> b.color.fromHsv(Time.time % 360.0F, 1.0F,
+     * 1.0F)).size(80.0F);
+     * t.left();
+     * t.row();
+     * });
+     */
   }
 
   @Override
