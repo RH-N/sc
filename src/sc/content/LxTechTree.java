@@ -4,14 +4,15 @@ import static mindustry.content.TechTree.*;
 import static sc.content.SCBlocks.*;
 import static sc.content.blocks.SCPower.*;
 import static sc.content.blocks.SCWalls.*;
+import static sc.content.blocks.SCTurrets.*;
+import static sc.content.blocks.SCDrills.*;
+import static sc.content.blocks.SCDistribution.*;
+import static sc.content.blocks.SCBlocksEffects.*;
 
 import arc.util.Log;
 import mindustry.content.Liquids;
 import mindustry.type.ItemStack;
 
-import static sc.content.blocks.SCTurrets.*;
-import static sc.content.blocks.SCDrills.*;
-import static sc.content.blocks.SCBlocksEffects.*;
 import static sc.content.SCItems.*;
 import static sc.content.SCUnits.*;
 import static sc.content.SCLiquids.*;
@@ -19,7 +20,27 @@ import static sc.content.SCLiquids.*;
 public class LxTechTree {
   public static void load() {
     SCPlanets.lx.techTree = nodeRoot("lx", core1, () -> {
+      node(lvconveyor, () -> {
+        node(lvlianjieqi, () -> {
+          node(lvluyouqi, () -> {
+            node(lvbridge, () -> {
+            });
+            node(lvyiliumeng, () -> {
+              node(lvfanxiangyiliumeng, () -> {
+              });
+            });
+            node(lvfenleiqi, () -> {
+              node(lvfanxiangfenleiqi, () -> {
+              });
+            });
+            node(lvfenpeiqi, () -> {
+            });
+          });
+        });
+      });
       node(danguanpao, ItemStack.with(lv, 80), () -> {
+        node(zhentian, ItemStack.with(lv, 200, li, 200), () -> {
+        });
         node(lvwall1, () -> {
           node(lvwall4, () -> {
             node(xiwall4, () -> {
@@ -67,6 +88,14 @@ public class LxTechTree {
       });
       Log.info("ready1");
       node(lvdrill, ItemStack.with(lv, 50), () -> {
+        node(powernode1, () -> {
+          node(xiuliqi, () -> {
+          });
+          node(battery1, () -> {
+          });
+          node(sun1, () -> {
+          });
+        });
         node(guijingdrill, () -> {
           node(guijingdrill2, () -> {
             node(jindrill, () -> {

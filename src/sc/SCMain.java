@@ -18,6 +18,7 @@ import javax.swing.event.HyperlinkEvent.EventType;
 
 import arc.Core;
 import arc.Events;
+import arc.graphics.Color;
 import arc.graphics.g2d.TextureRegion;
 import arc.scene.style.Style;
 import arc.scene.ui.ImageButton;
@@ -51,7 +52,7 @@ public class SCMain extends Mod {
             Vars.ui.showErrorMessage("@linkfail");
             Core.app.setClipboardText(scqq);
           }
-        }).grow().left().size(120.0f, 50.0f);
+        }).color(Color.valueOf("#556352")).left().size(120.0f, 50.0f);
       });
     });
   }
