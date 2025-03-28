@@ -26,6 +26,7 @@ import arc.util.Log;
 import arc.util.Time;
 import sc.content.SCBlocks;
 import mindustry.core.Renderer;
+import sc.content.LxMaps;
 import sc.content.LxTechTree;
 import mindustry.Vars;
 
@@ -95,6 +96,7 @@ public class SCMain extends Mod {
     Log.info("loaded blocks");
     SCLoadouts.load();
     SCPlanets.load();
+    LxMaps.load();
     Test.load();
     LxTechTree.load();
   }

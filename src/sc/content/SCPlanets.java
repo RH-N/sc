@@ -35,7 +35,7 @@ public class SCPlanets {
             Color.valueOf("#D489C4"));
       }
     };
-    SCPlanets.lx = new SCPlanet("lx", SCPlanets.scsun, 1.8f, 3) {
+    SCPlanets.lx = new Planet("lx", SCPlanets.scsun, 1.8f, 3) {
       {
         this.generator = new LxPlanetGenerator();
         this.meshLoader = () -> new HexMesh(this, 6);

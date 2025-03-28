@@ -1,3 +1,4 @@
+
 package sc.content.blocks;
 
 import mindustry.type.Category;
@@ -22,7 +23,7 @@ public class SCDistribution {
   public static Block lvyiliumeng;
   public static Block lvfanxiangyiliumeng;
 
-  public static void load() {
+  public void load() {
     SCDistribution.lvconveyor = new Conveyor("lvconveyor") {
       {
         this.size = 1;
@@ -63,7 +64,7 @@ public class SCDistribution {
     };
     SCDistribution.lvbridge = new ItemBridge("lvbridge") {
       {
-        this.size = 1;
+        this.size = 2;
         this.health = 80;
         this.requirements(Category.distribution, ItemStack.with(new Object[] { SCItems.lv, 4, SCItems.li, 4 }));
         this.armor = 2f;

@@ -2,6 +2,7 @@ package sc.content;
 
 import static mindustry.content.TechTree.*;
 import static sc.content.SCBlocks.*;
+import static sc.content.LxMaps.*;
 import static sc.content.blocks.SCPower.*;
 import static sc.content.blocks.SCWalls.*;
 import static sc.content.blocks.SCTurrets.*;
@@ -20,6 +21,8 @@ import static sc.content.SCLiquids.*;
 public class LxTechTree {
   public static void load() {
     SCPlanets.lx.techTree = nodeRoot("lx", core1, () -> {
+      node(jianglindian, () -> {
+      });
       node(lvconveyor, () -> {
         node(lvlianjieqi, () -> {
           node(lvluyouqi, () -> {

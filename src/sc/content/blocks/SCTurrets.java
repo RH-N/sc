@@ -26,28 +26,28 @@ public class SCTurrets {
         this.health = 160;
         this.size = 1;
         this.reload = 30.0f;
-        this.range = 105.0f;
+        this.range = 130.0f;
         this.inaccuracy = 0.0f;
         this.recoil = 1.0f;
         this.rotateSpeed = 5.0f;
-        this.maxAmmo = 20;
+        this.maxAmmo = 30;
         this.alwaysUnlocked = false;
         this.ammo(
-            SCItems.lv, new BasicBulletType(6.0f, 15.0f) {
+            SCItems.lv, new BasicBulletType(6.0f, 23.0f) {
               {
                 this.width = 5.0f;
                 this.height = 8.0f;
-                this.lifetime = 25.0f;
+                this.lifetime = 130/6f;
                 this.reloadMultiplier = 1.5f;
                 this.ammoMultiplier = 1.8f;
-                this.despawnEffect = this.hitEffect = SCFx.smoke4sides;
+                this.despawnEffect = this.hitEffect = Fx.none;
               }
             },
-            SCItems.li, new BasicBulletType(6.0f, 18.6f) {
+            SCItems.li, new BasicBulletType(6.0f, 23f) {
               {
                 this.width = 5.0f;
                 this.height = 8.0f;
-                this.lifetime = 25.0f;
+                this.lifetime = 130/6f;
                 this.reloadMultiplier = 1.0f;
                 this.ammoMultiplier = 1.3f;
               }
@@ -90,12 +90,11 @@ public class SCTurrets {
         this.health = 550;
         this.ammoPerShot = 1;
         this.range = 210f;
-        this.reload = 50f;
+        this.reload = 8f;
         this.inaccuracy = 5f;
-        this.ammoPerShot = 1;
         this.ammoUseEffect = Fx.casing1;
         this.rotateSpeed = 2f;
-        this.maxAmmo = 15;
+        this.maxAmmo = 35;
         this.targetAir = true;
         this.targetGround = false;
         this.coolantMultiplier = 2;
