@@ -22,6 +22,7 @@ import arc.graphics.Color;
 import arc.graphics.g2d.TextureRegion;
 import arc.scene.style.Style;
 import arc.scene.ui.ImageButton;
+import arc.util.Align;
 import arc.util.Log;
 import arc.util.Time;
 import sc.content.SCBlocks;
@@ -41,8 +42,11 @@ public class SCMain extends Mod {
     Log.info("缩放");
     Events.on(mindustry.game.EventType.ClientLoadEvent.class, (e) -> {
       welcomeDialog = new BaseDialog(Core.bundle.get("sc.welcome"));
-      welcomeDialog.cont.image(Core.atlas.find("sc-crystal-core")).pad(3.0f).row();
-      welcomeDialog.cont.button("退出", welcomeDialog::hide).size(100.0f, 50.0f);
+      welcomeDialog.cont.image(Core.atlas.find("sc-crystal-core")).pad(20.0f).row();
+      welcomeDialog.cont.add(Core.bundle.get("sc.text1")).center().growX().wrap().width(340).maxWidth(340).pad(4)
+          .labelAlign(Align.center).row();
+      // welcomeDialog.cont.button("退出", welcomeDialog::hide).size(100.0f, 50.0f);
+      welcomeDialog.addCloseButton();
       welcomeDialog.show();
       Log.info("loaded 显示");
       Log.info("dialog is null: " + (welcomeDialog == null));

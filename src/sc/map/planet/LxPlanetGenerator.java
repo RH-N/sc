@@ -1,4 +1,3 @@
-
 package sc.map.planet;
 
 import arc.graphics.*;
@@ -36,11 +35,11 @@ public class LxPlanetGenerator extends PlanetGenerator {
             { Blocks.ice, Blocks.grass, Blocks.grass, Blocks.grass, Blocks.grass, Blocks.grass,
                     Blocks.water, Blocks.stone, Blocks.stone, Blocks.stone, Blocks.snow, Blocks.iceSnow, Blocks.ice },
             { Blocks.grass, Blocks.grass, Blocks.water, Blocks.water, Blocks.dacite, Blocks.dacite, Blocks.ice,
-                    Blocks.shale, Blocks.shale, Blocks.stone, Blocks.snow, Blocks.iceSnow, Blocks.ice },
+                    Blocks.grass, Blocks.shale, Blocks.stone, Blocks.snow, Blocks.iceSnow, Blocks.grass },
     };
 
     ObjectMap<Block, Block> dec = ObjectMap.of(
-            Blocks.shale, Blocks.sporeCluster,
+            Blocks.shale, Blocks.grass,
             Blocks.moss, Blocks.sporeCluster,
             Blocks.taintedWater, Blocks.water,
             Blocks.grass, Blocks.darksandWater);
@@ -90,7 +89,7 @@ public class LxPlanetGenerator extends PlanetGenerator {
 
                 // no sectors near start sector!
                 if (osec.id == sector.planet.startSector || // near starting sector
-                        osec.generateEnemyBase && poles < 0.85 || // near other base
+                        osec.generateEnemyBase && poles < 0.35 || // near other base
                         (sector.preset != null && noise < 0.11) // near preset
                 ) {
                     return;

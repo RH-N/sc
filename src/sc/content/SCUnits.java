@@ -8,8 +8,14 @@ import arc.math.Rand;
 import mindustry.content.Fx;
 import mindustry.content.StatusEffects;
 import mindustry.content.UnitTypes;
+import mindustry.entities.abilities.ForceFieldAbility;
+import mindustry.entities.abilities.ShieldArcAbility;
+import mindustry.entities.abilities.ShieldRegenFieldAbility;
+import mindustry.entities.abilities.SpawnDeathAbility;
+import mindustry.entities.abilities.UnitSpawnAbility;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.bullet.MissileBulletType;
+import mindustry.entities.bullet.PointBulletType;
 import mindustry.entities.bullet.ShrapnelBulletType;
 import mindustry.type.UnitType;
 import mindustry.type.Weapon;
@@ -28,6 +34,7 @@ public class SCUnits {
   public static UnitType chujia3;
   public static UnitType chujia4;
   public static UnitType chujia5;
+  public static UnitType chujia6;
   public static UnitType liekong1;
   public static UnitType liekong2;
   public static UnitType liekong3;
@@ -66,19 +73,16 @@ public class SCUnits {
             this.y = 4.0f;
             this.rotate = false;
             this.shootY = 0f;
-
             this.beamWidth = 0.7f;
             this.repairSpeed = 3.1f;
             this.fractionRepairSpeed = 0.06f;
             // this.aimDst = 0f;
             this.shootCone = 15f;
             this.mirror = false;
-            this.targetUnits = true;
             this.targetBuildings = true;
-            this.autoTarget = false;
             this.controllable = true;
+            this.autoTarget = false;
             this.laserColor = SCPal.light_blue1;
-            ;
             this.healColor = SCPal.light_blue1;
             this.bullet = new BulletType() {
               {
@@ -167,6 +171,8 @@ public class SCUnits {
         this.armor = 6.0f;
         this.rotateSpeed = 2.0f;
         this.hitSize = 8.0f;
+        this.abilities.add(new ForceFieldAbility(22f, 0.3f, 300f, 100f));
+        this.abilities.add(new ShieldRegenFieldAbility(40, 400, 300, 44));
         this.weapons.add(new Weapon("sc-chujia3-weapon") {
           {
             this.reload = 7.0f;
@@ -409,6 +415,253 @@ public class SCUnits {
         });
       }
     };
+    SCUnits.chujia6 = new UnitType("chujia6") {
+      {
+        this.constructor = UnitTypes.reign.constructor;
+        this.controller = UnitTypes.reign.controller;
+        this.speed = 0.4f;
+        this.ammoType = new ItemAmmoType(SCItems.hejing1);
+        this.health = 310000.0f;
+        this.itemCapacity = 0;
+        this.armor = 35.0f;
+        this.rotateSpeed = 2f;
+        this.hitSize = 44.0f;
+        this.weapons.add(new Weapon("sc-chujia6-weapon1") {
+          {
+            this.reload = 60.0f;
+            this.shootY = 6.0f;
+            this.x = 28.0f;
+            this.y = 1.0f;
+            this.top = false;
+            this.ejectEffect = SCFx.casingbig;
+            this.shoot.shots = 2;
+            this.shoot.shotDelay = 5.0f;
+            this.bullet = new BasicBulletType(6f, 500f) {
+              {
+                this.shootEffect = Fx.shootSmall;
+                this.smokeEffect = Fx.shootSmallSmoke;
+                this.width = 10.0f;
+                this.height = 20.0f;
+                this.lifetime = 50.0f;
+                this.ammoMultiplier = 1.5f;
+                this.homingPower = 0.8f;
+                this.homingRange = 260;
+                this.lightningDamage = 50f;
+                this.lightning = 5;
+                this.lightningLength = 28;
+                this.lightColor = SCPal.blue1;
+                this.fragBullets = 5;
+                this.fragBullet = new BasicBulletType(6.2f, 125f) {
+                  {
+                    this.lifetime = 15.0f;
+                    this.homingPower = 0.8f;
+                    this.homingRange = 260;
+                    this.lightningDamage = 40f;
+                    this.lightning = 2;
+                    this.lightningLength = 14;
+                    this.lightColor = SCPal.blue1;
+                    this.fragBullets = 1;
+                    this.fragBullet = new PointBulletType() {
+                      {
+                        this.trailSpacing = 9f;
+                        this.trailEffect = new ParticleEffect() {
+                          {
+                            this.particles = 1;
+                            this.length = 0;
+                            this.baseLength = 1;
+                            this.lifetime = 8;
+                            this.line = true;
+                            this.randLength = false;
+                            this.lenFrom = 10;
+                            this.lenTo = 10;
+                            this.strokeFrom = 2;
+                            this.strokeTo = 0;
+                            this.colorFrom = SCPal.blue1;
+                            this.colorTo = SCPal.blue1;
+                            this.cone = 0;
+                          }
+                        };
+                        this.lifetime = 10;
+                        this.speed = 15;
+                        this.homingPower = 0.8f;
+                        this.homingRange = 260;
+                        this.statusDuration = 60;
+                        this.buildingDamageMultiplier = 3;
+                        this.splashDamageRadius = 38;
+                        this.splashDamage = 300;
+                        this.hitShake = 6;
+                        this.hitSound = Sounds.laser;
+                        this.hitEffect = this.despawnEffect = SCFx.pointdown;
+                        this.fragBullets = 2;
+                        this.fragBullet = new PointBulletType() {
+                          {
+                            this.trailSpacing = 9f;
+                            this.trailEffect = new ParticleEffect() {
+                              {
+                                this.particles = 1;
+                                this.length = 0;
+                                this.baseLength = 1;
+                                this.lifetime = 8;
+                                this.line = true;
+                                this.randLength = false;
+                                this.lenFrom = 10;
+                                this.lenTo = 10;
+                                this.strokeFrom = 2;
+                                this.strokeTo = 0;
+                                this.colorFrom = SCPal.blue1;
+                                this.colorTo = SCPal.blue1;
+                                this.cone = 0;
+                              }
+                            };
+                            this.lifetime = 10;
+                            this.speed = 15;
+                            this.homingPower = 0.8f;
+                            this.homingRange = 260;
+                            this.statusDuration = 60;
+                            this.buildingDamageMultiplier = 3;
+                            this.splashDamageRadius = 38;
+                            this.splashDamage = 300;
+                            this.hitShake = 6;
+                            this.hitSound = Sounds.laser;
+                            this.hitEffect = this.despawnEffect = SCFx.pointdown;
+                          }
+                        };
+                      }
+                    };
+                  }
+                };
+              }
+            };
+          }
+        });
+        this.weapons.add(new Weapon("sc-chujia6-weapon2") {
+          {
+            this.mirror = true;
+            this.alternate = true;
+            this.x = 15f;
+            this.y = -7;
+            this.shootSound = Sounds.shootBig;
+            this.reload = 30f;
+            this.recoil = 1f;
+            this.top = true;
+            this.rotate = true;
+            this.inaccuracy = 0.5f;
+            this.rotateSpeed = 2.3f;
+            this.bullet = new BasicBulletType(8f, 845f) {
+              {
+                this.splashDamage = 600;
+                this.reflectable = false;
+                this.splashDamageRadius = 40;
+                this.pierce = true;
+                this.pierceBuilding = true;
+                this.pierceArmor = true;
+                this.pierceCap = 3;
+                this.lifetime = 60;
+                this.hitSound = Sounds.explosion;
+                this.shootEffect = Fx.shootBig;
+                this.smokeEffect = Fx.shootBigSmoke;
+                this.width = 12;
+                this.height = 20;
+                this.despawnEffect = Fx.flakExplosionBig;
+                this.hitEffect = new ParticleEffect() {
+                  {
+                    this.particles = 22;
+                    this.lifetime = 11;
+                    this.length = 33;
+                    this.baseLength = 2;
+                    this.strokeFrom = 2;
+                    this.strokeTo = 0;
+                    this.colorFrom = SCPal.light_blue1;
+                    this.colorTo = Color.white;
+                    this.cone = 360f;
+                    this.lenTo = 0f;
+                    this.lenFrom = 18f;
+                    this.line = true;
+                  }
+                };
+              }
+            };
+          }
+        });
+        this.weapons.add(new Weapon("sc-chujia6-weapon2") {
+          {
+            this.mirror = true;
+            this.alternate = true;
+            this.x = 14f;
+            this.y = 7;
+            this.shootSound = Sounds.shootBig;
+            this.reload = 30f;
+            this.recoil = 1f;
+            this.top = true;
+            this.rotate = true;
+            this.inaccuracy = 0.5f;
+            this.rotateSpeed = 2.3f;
+            this.bullet = new BasicBulletType(8f, 845f) {
+              {
+                this.splashDamage = 600;
+                this.reflectable = false;
+                this.splashDamageRadius = 40;
+                this.pierce = true;
+                this.pierceBuilding = true;
+                this.pierceArmor = true;
+                this.pierceCap = 3;
+                this.lifetime = 60;
+                this.hitSound = Sounds.explosion;
+                this.shootEffect = Fx.shootBig;
+                this.smokeEffect = Fx.shootBigSmoke;
+                this.width = 12;
+                this.height = 20;
+                this.despawnEffect = Fx.flakExplosionBig;
+                this.hitEffect = new ParticleEffect() {
+                  {
+                    this.particles = 22;
+                    this.lifetime = 11;
+                    this.length = 33;
+                    this.baseLength = 2;
+                    this.strokeFrom = 2;
+                    this.strokeTo = 0;
+                    this.colorFrom = SCPal.light_blue1;
+                    this.colorTo = Color.white;
+                    this.cone = 360f;
+                    this.lenTo = 0f;
+                    this.lenFrom = 18f;
+                    this.line = true;
+                  }
+                };
+              }
+            };
+          }
+        });
+        this.abilities.add(new ShieldArcAbility() {
+          {
+            this.radius = 80;
+            this.width = 20;
+            this.max = 5000;
+            this.regen = 1;
+            this.cooldown = 1200;
+            this.angle = 360;
+            this.angleOffset = 80;
+            this.whenShooting = false;
+          }
+        });
+        this.abilities.add(new UnitSpawnAbility() {
+          {
+            this.unit = SCUnits.chujia4;
+            this.spawnX = 25f;
+            this.spawnY = -8.5f;
+            this.spawnTime = 3600f;
+          }
+        });
+        this.abilities.add(new UnitSpawnAbility() {
+          {
+            this.unit = SCUnits.chujia4;
+            this.spawnX = -25f;
+            this.spawnY = -8.5f;
+            this.spawnTime = 3600f;
+          }
+        });
+      }
+    };
     SCUnits.liekong1 = new UnitType("liekong1") {
       {
         this.hitSize = 7f;
@@ -537,6 +790,7 @@ public class SCUnits {
         this.hitSize = 30f;
         this.rotateSpeed = 3f;
         this.itemCapacity = 30;
+        this.abilities.add(new ForceFieldAbility(42f, 0.3f, 600f, 160f));
         this.constructor = UnitTypes.zenith.constructor;
         this.controller = UnitTypes.zenith.controller;
         this.canDrown = false;
@@ -548,7 +802,7 @@ public class SCUnits {
         this.speed = 1f;
         this.health = 3150;
         this.engineSize = 3.5f;
-        this.engineOffset = 10f;
+        this.engineOffset = 12f;
         this.lowAltitude = true;
         this.armor = 10;
         this.targetFlags = new BlockFlag[] { BlockFlag.storage, BlockFlag.battery, null };

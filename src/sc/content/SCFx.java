@@ -28,6 +28,7 @@ public class SCFx {
   public static Effect airmisslesmall;
   public static Effect airmisslemiddle;
   public static Effect airpiercedown;
+  public static Effect pointdown;
   static {
     SCFx.smoke4sides = new Effect(30.0f, e -> {
       // @Nullable TextureRegion tex = Core.atlas.find("circle");
@@ -95,5 +96,34 @@ public class SCFx {
         this.strokeTo = 0;
       }
     });
+    pointdown = new MultiEffect(new ParticleEffect() {
+      {
+        this.particles = 1;
+        this.lifetime = 11;
+        this.length = 0;
+        this.baseLength = 0;
+        this.sizeFrom = 5;
+        this.sizeTo = 0;
+        this.colorFrom = SCPal.light_blue1;
+        this.colorTo = Color.white;
+        this.cone = 360f;
+      }
+    },
+        new ParticleEffect() {
+          {
+            this.particles = 22;
+            this.lifetime = 11;
+            this.length = 33;
+            this.baseLength = 2;
+            this.strokeFrom = 2;
+            this.strokeTo = 0;
+            this.colorFrom = SCPal.light_blue1;
+            this.colorTo = Color.white;
+            this.cone = 360f;
+            this.lenTo = 0f;
+            this.lenFrom = 18f;
+            this.line = true;
+          }
+        });
   }
 }

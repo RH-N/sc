@@ -26,6 +26,8 @@ public class SCDistribution {
     SCDistribution.lvconveyor = new Conveyor("lvconveyor") {
       {
         this.size = 1;
+        this.bridgeReplacement = SCDistribution.lvbridge;
+        this.junctionReplacement = SCDistribution.lvlianjieqi;
         this.health = 40;
         this.requirements(Category.distribution, ItemStack.with(new Object[] { SCItems.lv, 1 }));
         this.armor = 2f;
