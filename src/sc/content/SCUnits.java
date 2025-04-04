@@ -826,7 +826,7 @@ public class SCUnits {
         this.engineSize = 2.5f;
         this.engineOffset = 4f;
         this.armor = 3;
-        this.abilities.add(new FlashAbility(24f, 210f, Fx.none, 60f, 10f));
+        this.abilities.add(new FlashAbility(24f, 60f, Fx.none, 20f, 10f));
         this.targetFlags = new BlockFlag[] { BlockFlag.generator, null };
         this.weapons.add(new Weapon("sc-liekong1-weapon") {
           {
@@ -893,7 +893,7 @@ public class SCUnits {
         this.controller = UnitTypes.horizon.controller;
         this.canDrown = false;
         this.circleTarget = false;
-        this.abilities.add(new FlashAbility(24f, 210f, Fx.none, 60f, 10f));
+        this.abilities.add(new FlashAbility(24f, 60f, Fx.none, 20f, 10f));
         this.forceMultiTarget = true;
         this.buildSpeed = 0f;
         this.ammoType = new ItemAmmoType(SCItems.cuguijing);

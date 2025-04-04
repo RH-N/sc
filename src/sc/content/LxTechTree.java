@@ -63,7 +63,7 @@ public class LxTechTree {
         node(lvwall1, () -> {
           node(lvwall4, () -> {
             node(xiwall4, () -> {
-              node(lvgangwall4, () -> {
+              node(lvgangwall4, ItemStack.with(cuowu, 1), () -> {
                 node(jinwall4, () -> {
                   node(chijinwall, () -> {
                     node(hejingwall1, () -> {
