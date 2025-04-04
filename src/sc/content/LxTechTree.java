@@ -7,11 +7,15 @@ import static sc.content.blocks.SCPower.*;
 import static sc.content.blocks.SCWalls.*;
 import static sc.content.blocks.SCTurrets.*;
 import static sc.content.blocks.SCDrills.*;
+import static sc.content.blocks.SCLiquidBlocks.*;
 import static sc.content.blocks.SCDistribution.*;
 import static sc.content.blocks.SCBlocksEffects.*;
 
+import arc.struct.Seq;
 import arc.util.Log;
 import mindustry.content.Liquids;
+import mindustry.game.Objectives.Research;
+import mindustry.game.Objectives.SectorComplete;
 import mindustry.type.ItemStack;
 
 import static sc.content.SCItems.*;
@@ -22,10 +26,20 @@ public class LxTechTree {
   public static void load() {
     SCPlanets.lx.techTree = nodeRoot("lx", core1, () -> {
       node(jianglindian, () -> {
+        node(baoziliegu, Seq.with(new SectorComplete(jianglindian)), () -> {
+        });
       });
       node(lvconveyor, () -> {
         node(lvlianjieqi, () -> {
           node(lvluyouqi, () -> {
+            node(lvrongqi, () -> {
+              node(weicang, () -> {
+                node(juxingcang, () -> {
+                });
+              });
+              node(lvunloader, () -> {
+              });
+            });
             node(lvbridge, () -> {
             });
             node(lvyiliumeng, () -> {
@@ -42,6 +56,8 @@ public class LxTechTree {
         });
       });
       node(danguanpao, ItemStack.with(lv, 80), () -> {
+        node(duoguanpao, Seq.with(new SectorComplete(jianglindian)), () -> {
+        });
         node(zhentian, ItemStack.with(lv, 200, li, 200), () -> {
         });
         node(lvwall1, () -> {
@@ -91,7 +107,35 @@ public class LxTechTree {
       });
       Log.info("ready1");
       node(lvdrill, ItemStack.with(lv, 50), () -> {
+        node(beng1, () -> {
+          node(lvdaoguan, () -> {
+            node(lvyetijiaochaqi, () -> {
+              node(lvyetiluyouqi, () -> {
+                node(yetichuguan, () -> {
+                  node(shuixiang, () -> {
+                  });
+                });
+                node(lvdaoguanqiao, () -> {
+                  node(xidaoguanqiao, () -> {
+                  });
+                });
+              });
+            });
+            node(xidaoguan, () -> {
+            });
+          });
+          node(beng2, () -> {
+            node(beng3, () -> {
+              node(beng4, () -> {
+              });
+            });
+          });
+        });
         node(powernode1, () -> {
+          node(firepower1, Seq.with(new Research(tandanzhi)), () -> {
+            node(qilunji, Seq.with(new SectorComplete(baoziliegu)), () -> {
+            });
+          });
           node(xiuliqi, () -> {
           });
           node(battery1, () -> {

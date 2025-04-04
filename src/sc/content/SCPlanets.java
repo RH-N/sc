@@ -2,6 +2,7 @@ package sc.content;
 
 import arc.graphics.Color;
 import mindustry.content.Items;
+import mindustry.game.Team;
 import mindustry.graphics.g3d.HexMesh;
 import mindustry.graphics.g3d.HexSkyMesh;
 import mindustry.graphics.g3d.MultiMesh;
@@ -55,7 +56,8 @@ public class SCPlanets {
         this.bloom = false;
         this.updateLighting = true;
         this.accessible = true;
-        this.launchCapacityMultiplier = 0.6f;
+        this.allowWaves = true;
+        this.launchCapacityMultiplier = 0.8f;
         this.allowLaunchSchematics = true;// 开启发射核心蓝图
         // this.description = " 这是一个富饶的星球，丰富的矿藏也招惹了一些敌人……攻下这里，发展科技，开启合晶之旅吧！";
         this.allowSectorInvasion = false;// 模拟攻击图入侵
@@ -63,8 +65,14 @@ public class SCPlanets {
         this.alwaysUnlocked = true;
         this.clearSectorOnLose = false;
         this.allowLaunchLoadout = true;
-        this.startSector = 15;
+        this.startSector = 1;
         this.orbitRadius = 35;
+        this.ruleSetter = r -> {
+          r.waveTeam = Team.crux;
+          r.placeRangeCheck = false;
+          r.showSpawns = false;
+        };
+
         this.tidalLock = false;
         this.iconColor = SCPal.light_blue1;
         this.rotateTime = 300;

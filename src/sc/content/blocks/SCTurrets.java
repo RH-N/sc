@@ -5,6 +5,8 @@ import mindustry.content.Fx;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.bullet.BulletType;
 import mindustry.entities.part.RegionPart;
+import mindustry.entities.pattern.ShootPattern;
+import mindustry.entities.pattern.ShootBarrel;
 import mindustry.type.Category;
 import mindustry.type.Item;
 import mindustry.type.ItemStack;
@@ -18,6 +20,7 @@ import sc.content.SCItems;
 public class SCTurrets {
 
   public static Block danguanpao;
+  public static Block duoguanpao;
   public static Block zhentian;
 
   public static void load() {
@@ -37,7 +40,7 @@ public class SCTurrets {
               {
                 this.width = 5.0f;
                 this.height = 8.0f;
-                this.lifetime = 130/6f;
+                this.lifetime = 130 / 6f;
                 this.reloadMultiplier = 1.5f;
                 this.ammoMultiplier = 1.8f;
                 this.despawnEffect = this.hitEffect = Fx.none;
@@ -47,7 +50,7 @@ public class SCTurrets {
               {
                 this.width = 5.0f;
                 this.height = 8.0f;
-                this.lifetime = 130/6f;
+                this.lifetime = 130 / 6f;
                 this.reloadMultiplier = 1.0f;
                 this.ammoMultiplier = 1.3f;
               }
@@ -70,6 +73,62 @@ public class SCTurrets {
             }
           }
         };
+      }
+    };
+    SCTurrets.duoguanpao = new ItemTurret("duoguanpao") {
+      {
+        this.health = 240;
+        this.size = 1;
+        this.reload = 23.0f;
+        this.range = 170.0f;
+        this.inaccuracy = 0.0f;
+        this.recoil = 1.0f;
+        this.rotateSpeed = 5.0f;
+        this.maxAmmo = 40;
+        this.coolant = consumeCoolant(0.1f);
+        this.requirements(Category.turret, ItemStack.with(new Object[] { SCItems.lv, 50, SCItems.li, 50 }));
+        this.shoot = new ShootBarrel() {
+          {
+            this.shots = 2;
+          }
+        };
+        this.ammo(
+            SCItems.lv, new BasicBulletType(4f, 27f) {
+              {
+                this.width = 5.0f;
+                this.height = 8.0f;
+                this.lifetime = 170f / 4f;
+                this.reloadMultiplier = 1.0f;
+                this.ammoMultiplier = 1.3f;
+              }
+            },
+            SCItems.li, new BasicBulletType(4f, 27f) {
+              {
+                this.width = 5.0f;
+                this.height = 8.0f;
+                this.lifetime = 170f / 4f;
+                this.reloadMultiplier = 1.0f;
+                this.ammoMultiplier = 1.3f;
+              }
+            },
+            SCItems.cuguijing, new BasicBulletType(4f, 32f) {
+              {
+                this.width = 5.0f;
+                this.height = 8.0f;
+                this.lifetime = 170f / 4f;
+                this.reloadMultiplier = 1.0f;
+                this.ammoMultiplier = 1.3f;
+                this.fragBullets = 2;
+                this.fragBullet = new BasicBulletType(5.5f, 15f) {
+                  {
+                    this.lifetime = 15f;
+                    this.height = 8f;
+                    this.width = 8f;
+                    this.hitEffect = Fx.none;
+                  }
+                };
+              }
+            });
       }
     };
     BulletType zhentianbullet = new BasicBulletType(6, 6f) {

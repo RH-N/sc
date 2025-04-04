@@ -3,6 +3,7 @@ package sc.content;
 import sc.content.blocks.SCBlocksEffects;
 import sc.content.blocks.SCDistribution;
 import sc.content.blocks.SCDrills;
+import sc.content.blocks.SCLiquidBlocks;
 import sc.content.blocks.SCPower;
 import sc.content.blocks.SCTurrets;
 import sc.content.blocks.SCWalls;
@@ -90,6 +91,7 @@ public class SCBlocks {
   public static void load() {
     SCTurrets.load();
     SCDistribution.load();
+    SCLiquidBlocks.load();
     SCDrills.load();
     Log.info("readya1");
     SCPower.load();

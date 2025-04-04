@@ -4,6 +4,7 @@ import static arc.math.Angles.*;
 
 import arc.Core;
 import arc.graphics.Color;
+import arc.graphics.Colors;
 import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.Fill;
 import arc.graphics.g2d.Lines;
@@ -29,6 +30,7 @@ public class SCFx {
   public static Effect airmisslemiddle;
   public static Effect airpiercedown;
   public static Effect pointdown;
+  public static Effect bomb1;
   static {
     SCFx.smoke4sides = new Effect(30.0f, e -> {
       // @Nullable TextureRegion tex = Core.atlas.find("circle");
@@ -123,6 +125,44 @@ public class SCFx {
             this.lenTo = 0f;
             this.lenFrom = 18f;
             this.line = true;
+          }
+        });
+    bomb1 = new MultiEffect(new ParticleEffect() {
+      {
+        this.particles = 18;
+        this.sizeFrom = 6;
+        this.sizeTo = 0;
+        this.length = 45;
+        this.baseLength = 3;
+        this.lifetime = 35;
+        this.colorFrom = Color.valueOf("737373FF");
+        this.colorTo = Color.valueOf("737373FF");
+        this.cone = 360;
+      }
+    },
+        new ParticleEffect() {
+          {
+            this.particles = 32;
+            this.line = true;
+            this.sizeFrom = 9;
+            this.sizeTo = 0;
+            this.length = 53;
+            this.baseLength = 20;
+            this.lifetime = 22;
+            this.colorFrom = Color.valueOf("#FFFFFF");
+            this.colorTo = Color.valueOf("#FFE176FF");
+            this.cone = 360;
+          }
+        },
+        new WaveEffect() {
+          {
+            this.lifetime = 15;
+            this.sizeFrom = 0;
+            this.sizeTo = 70;
+            this.strokeFrom = 4;
+            this.strokeTo = 0;
+            this.colorFrom = Color.valueOf("FFE176FF");
+            this.colorTo = Color.valueOf("ffffff");
           }
         });
   }

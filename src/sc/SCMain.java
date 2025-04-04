@@ -42,7 +42,7 @@ public class SCMain extends Mod {
     Log.info("缩放");
     Events.on(mindustry.game.EventType.ClientLoadEvent.class, (e) -> {
       welcomeDialog = new BaseDialog(Core.bundle.get("sc.welcome"));
-      welcomeDialog.cont.image(Core.atlas.find("sc-crystal-core")).pad(20.0f).row();
+      welcomeDialog.cont.image(Core.atlas.find("sc-crystal-core")).size(400f).pad(5.0f).row();
       welcomeDialog.cont.add(Core.bundle.get("sc.text1")).center().growX().wrap().width(340).maxWidth(340).pad(4)
           .labelAlign(Align.center).row();
       // welcomeDialog.cont.button("退出", welcomeDialog::hide).size(100.0f, 50.0f);

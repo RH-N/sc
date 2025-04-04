@@ -26,14 +26,20 @@ public class SCDistribution {
     SCDistribution.lvconveyor = new Conveyor("lvconveyor") {
       {
         this.size = 1;
-        this.bridgeReplacement = SCDistribution.lvbridge;
-        this.junctionReplacement = SCDistribution.lvlianjieqi;
         this.health = 40;
         this.requirements(Category.distribution, ItemStack.with(new Object[] { SCItems.lv, 1 }));
         this.armor = 2f;
         this.speed = 0.05f;
         this.displayedSpeed = 7f;
       }
+
+      @Override
+      public void init() {
+        super.init();
+        this.bridgeReplacement = SCDistribution.lvbridge;
+        this.junctionReplacement = SCDistribution.lvlianjieqi;
+      }
+
     };
     SCDistribution.lvlianjieqi = new Junction("lvlianjieqi") {
       {

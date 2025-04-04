@@ -2,7 +2,9 @@ package sc.content;
 
 import arc.util.Log;
 import mindustry.world.Block;
+import mindustry.world.blocks.environment.Floor;
 import mindustry.world.blocks.environment.OreBlock;
+import mindustry.world.meta.Attribute;
 
 public class SCOre {
   public static Block oreLv;
@@ -14,6 +16,8 @@ public class SCOre {
   public static Block oreYou;
   public static Block oreChijin;
   public static Block oreGutaineng;
+  public static Block heisha;
+  public static Block sha;
 
   public static void load() {
     oreLv = new OreBlock("ore-lv", SCItems.lv) {
@@ -91,5 +95,26 @@ public class SCOre {
       }
     };
     Log.info("loaded ore-gutaineng");
+
+    SCOre.heisha = new Floor("heisha") {
+      {
+        this.speedMultiplier = 1f;
+        this.variants = 3;
+        this.dragMultiplier = 0f;
+        this.damageTaken = 0f;
+        this.hasShadow = true;
+        this.attributes.set(Attribute.oil, 1.4f);
+      }
+    };
+    SCOre.sha = new Floor("sha") {
+      {
+        this.speedMultiplier = 1f;
+        this.variants = 3;
+        this.dragMultiplier = 0f;
+        this.damageTaken = 0f;
+        this.hasShadow = true;
+        this.attributes.set(Attribute.oil, 0.7f);
+      }
+    };
   }
 }
