@@ -9,6 +9,7 @@ import sc.content.blocks.SCTurrets;
 import sc.content.blocks.SCWalls;
 import sc.graphics.SCPal;
 import sc.world.SCAttributes;
+import sc.world.blocks.distribution.DropDrillItem;
 
 import static sc.content.SCItems.youzao;
 
@@ -87,8 +88,17 @@ public class SCBlocks {
   public static Block hejinggongchang3;
   public static Block hejinggongchang4;
   public static Block cishidaihejinggongchang;
+  public static Block tt;
 
   public static void load() {
+    SCBlocks.tt = new DropDrillItem("tt") {
+      {
+        this.size = 2;
+        this.hasPower = true;
+        this.consumePower(1f);
+        this.requirements(Category.distribution, ItemStack.with(new Object[] { SCItems.lv, 80, SCItems.li, 65 }));
+      }
+    };
     SCTurrets.load();
     SCDistribution.load();
     SCLiquidBlocks.load();

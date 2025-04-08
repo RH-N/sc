@@ -42,10 +42,10 @@ public class SCMain extends Mod {
     Log.info("缩放");
     Events.on(mindustry.game.EventType.ClientLoadEvent.class, (e) -> {
       welcomeDialog = new BaseDialog(Core.bundle.get("sc.welcome"));
-      welcomeDialog.cont.image(Core.atlas.find("sc-crystal-core")).size(400f).pad(5.0f).row();
+      welcomeDialog.cont.image(Core.atlas.find("sc-crystal-core")).size(310f).pad(5.0f).row();
       welcomeDialog.cont.pane(t -> {
         t.add(Core.bundle.get("sc.text1")).row();
-      });
+      }).row();
       // welcomeDialog.cont.button("退出", welcomeDialog::hide).size(100.0f, 50.0f);
       welcomeDialog.addCloseButton();
       Log.info("loaded 显示");
@@ -57,8 +57,8 @@ public class SCMain extends Mod {
             Vars.ui.showErrorMessage("@linkfail");
             Core.app.setClipboardText(scqq);
           }
-        }).color(Color.valueOf("#556352")).size(120.0f, 50.0f).padRight(10f).row();
-      });
+        }).color(Color.valueOf("#556352")).size(120.0f, 50.0f);
+      }).pad(3f).row();
       welcomeDialog.show();
     });
   }
