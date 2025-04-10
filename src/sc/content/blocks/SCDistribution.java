@@ -10,6 +10,7 @@ import mindustry.world.blocks.distribution.OverflowGate;
 import mindustry.world.blocks.distribution.Router;
 import mindustry.world.blocks.distribution.Sorter;
 import sc.content.SCItems;
+import sc.world.blocks.distribution.DropDrillItem;
 
 public class SCDistribution {
   public static Block lvconveyor;
@@ -21,6 +22,7 @@ public class SCDistribution {
   public static Block lvfanxiangfenleiqi;
   public static Block lvyiliumeng;
   public static Block lvfanxiangyiliumeng;
+  public static Block dropdrill1;
 
   public static void load() {
     SCDistribution.lvconveyor = new Conveyor("lvconveyor") {
@@ -118,6 +120,18 @@ public class SCDistribution {
         this.health = 40;
         this.requirements(Category.distribution, ItemStack.with(new Object[] { SCItems.lv, 3, SCItems.li, 3 }));
         this.armor = 2f;
+      }
+    };
+    SCDistribution.dropdrill1 = new DropDrillItem("dropdrill1") {
+      {
+        this.size = 2;
+        this.hasPower = true;
+        this.consumePower(7.5f);
+        this.itemCapacity = 50;
+        this.range = 72f;
+        this.reload = 720f;
+        this.requirements(Category.distribution,
+            ItemStack.with(new Object[] { SCItems.lv, 120, SCItems.li, 150, SCItems.cuguijing, 120 }));
       }
     };
   }

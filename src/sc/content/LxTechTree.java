@@ -41,6 +41,8 @@ public class LxTechTree {
               });
             });
             node(lvbridge, () -> {
+              node(dropdrill1, () -> {
+              });
             });
             node(lvyiliumeng, () -> {
               node(lvfanxiangyiliumeng, () -> {
@@ -61,9 +63,9 @@ public class LxTechTree {
         node(zhentian, ItemStack.with(lv, 200, li, 200), () -> {
         });
         node(lvwall1, () -> {
-          node(lvwall4, () -> {
+          node(lvwall4, ItemStack.with(cuowu, 1), () -> {
             node(xiwall4, () -> {
-              node(lvgangwall4, ItemStack.with(cuowu, 1), () -> {
+              node(lvgangwall4, () -> {
                 node(jinwall4, () -> {
                   node(chijinwall, () -> {
                     node(hejingwall1, () -> {

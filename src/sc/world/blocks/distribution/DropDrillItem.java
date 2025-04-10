@@ -3,6 +3,7 @@ package sc.world.blocks.distribution;
 import arc.graphics.Color;
 import arc.math.Mathf;
 import arc.math.Rand;
+import arc.util.Log;
 import arc.util.Time;
 import arc.util.Tmp;
 import arc.util.io.Reads;
@@ -18,12 +19,15 @@ import mindustry.type.Item;
 import mindustry.type.ItemStack;
 import mindustry.ui.Bar;
 import mindustry.world.Block;
+import mindustry.world.blocks.production.BeamDrill;
 import mindustry.world.blocks.production.Drill;
+import mindustry.world.blocks.production.WallCrafter;
 import mindustry.world.blocks.production.Drill.DrillBuild;
 import mindustry.world.meta.BlockGroup;
 import mindustry.world.meta.Stat;
 import mindustry.world.meta.StatUnit;
 import sc.graphics.SCPal;
+import sc.world.meta.SCStat;
 
 import static mindustry.Vars.*;
 
@@ -33,7 +37,6 @@ public class DropDrillItem extends Block {
   public Effect workingeffect;
   public Effect completeeffect;
   public Color baseColor = SCPal.light_blue1;
-  public ItemStack[] myitems;
 
   public DropDrillItem(String name) {
     super(name);
@@ -54,7 +57,7 @@ public class DropDrillItem extends Block {
   public void setStats() {
     super.setStats();
     stats.add(Stat.range, this.range / 8, StatUnit.blocks);
-    stats.add(Stat.reload, this.reload / 60, StatUnit.seconds);
+    stats.add(SCStat.waittime, this.reload / 60, StatUnit.seconds);
   }
 
   @Override
@@ -66,16 +69,11 @@ public class DropDrillItem extends Block {
   }
 
   @Override
-  public boolean outputsItems() {
-    return true;
-  }
-
-  @Override
   public void drawPlace(int x, int y, int rotation, boolean valid) {
     super.drawPlace(x, y, rotation, valid);
     Drawf.dashCircle(x * tilesize + offset, y * tilesize + offset, range, baseColor);
     indexer.eachBlock(player.team(), x * tilesize + offset, y * tilesize + offset, range,
-        other -> other.block instanceof Drill,
+        other -> other.block instanceof Drill || other.block instanceof BeamDrill || other.block instanceof WallCrafter,
         other -> Drawf.selected(other, Tmp.c1.set(baseColor).a(Mathf.absin(4f, 1f))));
 
   }
@@ -91,16 +89,25 @@ public class DropDrillItem extends Block {
     }
 
     @Override
+    public void drawLight() {
+      Drawf.light(x, y, lightRadius * efficiency, baseColor, 0.7f * efficiency);
+    }
+
+    @Override
     public void updateTile() {
-      timer += Time.delta;
-      timer1 += Time.delta;
+      if (efficiency > 0) {
+        timer += this.delta() * efficiency;
+        timer1 += Time.delta * efficiency;
+      }
       if (timer1 >= 20f) {
         workingeffect.at(x + rand.random(size), y + rand.random(size));
         timer1 = 0f;
       }
       if (timer >= reload) {
         timer = 0f;
-        indexer.eachBlock(this, range, other -> other.block instanceof Drill,
+        indexer.eachBlock(this, range,
+            other -> other.block instanceof Drill || other.block instanceof BeamDrill
+                || other.block instanceof WallCrafter,
             other -> other.items.each((item, amount) -> {
               if (amount > 0 && this.items.get(item) < itemCapacity) {
                 if (other.items.total() >= itemCapacity - this.items.get(item)) {
@@ -126,7 +133,9 @@ public class DropDrillItem extends Block {
 
     @Override
     public void drawSelect() {
-      indexer.eachBlock(this, range, other -> other.block instanceof Drill,
+      indexer.eachBlock(this, range,
+          other -> other.block instanceof Drill || other.block instanceof BeamDrill
+              || other.block instanceof WallCrafter,
           other -> Drawf.selected(other, Tmp.c1.set(baseColor).a(Mathf.absin(4f, 1f))));
       Drawf.dashCircle(x, y, range, baseColor);
     }

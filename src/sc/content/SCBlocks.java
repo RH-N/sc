@@ -9,6 +9,7 @@ import sc.content.blocks.SCTurrets;
 import sc.content.blocks.SCWalls;
 import sc.graphics.SCPal;
 import sc.world.SCAttributes;
+import sc.world.blocks.denfence.ReduceBoost;
 import sc.world.blocks.distribution.DropDrillItem;
 
 import static sc.content.SCItems.youzao;
@@ -89,9 +90,10 @@ public class SCBlocks {
   public static Block hejinggongchang4;
   public static Block cishidaihejinggongchang;
   public static Block tt;
+  public static Block t;
 
   public static void load() {
-    SCBlocks.tt = new DropDrillItem("tt") {
+    SCBlocks.t = new ReduceBoost("t") {
       {
         this.size = 2;
         this.hasPower = true;
